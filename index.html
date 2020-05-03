@@ -5,7 +5,7 @@
    * See instructions for running APIs Explorer code samples locally:
    * https://developers.google.com/explorer-help/guides/code_samples#javascript
    */
-
+  var vidId;
   function authenticate() {
     return gapi.auth2.getAuthInstance()
         .signIn({scope: "https://www.googleapis.com/auth/youtube.force-ssl"})
@@ -32,7 +32,7 @@
   }
   function execute2(){
     return gapi.client.youtube.captions.download({
-      "id": "Hccx0NILwSZwwCteuQCH0FC-h-U_8nCOYR8d6Ffy4zk=",
+      "id": vidId;
     })
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
@@ -40,9 +40,22 @@
               },
               function(err) { console.error("Execute error", err); });
   }
+  function validateForm() {
+  var x = document.forms["myForm"]["fname"].value;
+    if (x == "") {
+      console.log("Name must be filled out");
+      return false;
+    }
+    console.log(x)
+  }
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "942365948919-3ibtvbccelirtev78nknbqn36cmsjdbm.apps.googleusercontent.com"});
   });
 </script>
 <button onclick="authenticate().then(loadClient)">authorize and load</button>
 <button onclick="execute2()">execute</button>
+<form name="myForm" onsubmit="return validateForm()">
+  Name: <input type="text" name="fname">
+  <input type="submit" value="Submit">
+</form>
+
