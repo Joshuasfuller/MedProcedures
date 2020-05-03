@@ -54,7 +54,7 @@
 </script>
 <button onclick="authenticate().then(loadClient)">authorize and load</button>
 <button onclick="execute2()">execute</button>
-<form name="myForm" onsubmit="return validateForm()">
+<form name="myForm" action="" onsubmit="return validateForm()" method="post">
   Name: <input type="text" name="fname">
   <input type="submit" value="Submit">
 </form>
