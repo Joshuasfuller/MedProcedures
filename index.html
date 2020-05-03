@@ -1,54 +1,14 @@
-<script src="https://apis.google.com/js/api.js"></script>
+<h1>HELLO</h1>
 <script>
-  /**
-   * Sample JavaScript code for youtube.captions.list
-   * See instructions for running APIs Explorer code samples locally:
-   * https://developers.google.com/explorer-help/guides/code_samples#javascript
-   */
   var vidId;
-  function authenticate() {
-    return gapi.auth2.getAuthInstance()
-        .signIn({scope: "https://www.googleapis.com/auth/youtube.force-ssl"})
-        .then(function() { console.log("Sign-in successful"); },
-              function(err) { console.error("Error signing in", err); });
-  }
-  function loadClient() {
-    gapi.client.setApiKey("AIzaSyA_xwIG1FQLnbHjuxrfQPv79NVtmhVtdAk");
-    return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
-        .then(function() { console.log("GAPI client loaded for API"); },
-              function(err) { console.error("Error loading GAPI client for API", err); });
-  }
+ 
   // Make sure the client is loaded and sign-in is complete before calling this method.
-  function execute() {
-    return gapi.client.youtube.captions.list({
-      "part": "id",
-      "videoId": "GeNG1M9eC-E"
-    })
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });
-  }
-  function execute2(){
-    console.log(vidId);
-    return gapi.client.youtube.captions.download({
-      "id": vidId
-    })
-        .then(function(response) {
-                // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
-              },
-              function(err) { console.error("Execute error", err); });
-  }
   function validateForm() {
-   var x = document.forms["myForm"]["fname"].value;
-    if (x == "") {
-      console.log("Name must be filled out");
+   vidId = document.forms["myForm"]["fname"].value;
+    if (vidId == "") {
+      console.log("must be filled out");
       return false;
     }
-    vidId = x;
-    console.log(x);
     return false;
   }
   function loadDoc() {
@@ -58,16 +18,14 @@
        console.log(xhttp.responseText);
      }
      };
-     xhttp.open("GET", "https://video.google.com/timedtext?lang=en&v=GeNG1M9eC-E", true);
+    var requ = "https://downsub.com/?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3";
+    requ = requ.concat(vidId);
+    console.log(requ);
+     xhttp.open("GET", requ, true);
      xhttp.send();
   }
-  gapi.load("client:auth2", function() {
-    gapi.auth2.init({client_id: "942365948919-3ibtvbccelirtev78nknbqn36cmsjdbm.apps.googleusercontent.com"});
-  });
 
 </script>
-<button onclick="authenticate().then(loadClient)">authorize and load</button>
-<button onclick="execute2()">execute</button>
 <form name="myForm" onsubmit="return validateForm()" >
   Name: <input type="text" name="fname">
   <input type="submit" value="Submit">
