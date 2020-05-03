@@ -55,10 +55,11 @@
     xhttp.onreadystatechange = function() {
      if (xhttp.readyState == 4 && xhttp.status == 200) {
        console.log(xhttp.responseXML);
-    }
-  };
-  xhttp.open("POST", "https://video.google.com/timedtext?lang=en&v=GeNG1M9eC-E", true);
-  xhttp.send();
+     }
+     };
+    xhttp.open("POST", "https://video.google.com/timedtext?lang=en&v=GeNG1M9eC-E", true);
+     xhttp.send();
+  }
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "942365948919-3ibtvbccelirtev78nknbqn36cmsjdbm.apps.googleusercontent.com"});
   });
