@@ -54,7 +54,7 @@
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
      if (xhttp.readyState == 4 && xhttp.status == 200) {
-       console.log(xhttp.responseXML);
+       console.log(xhttp.responseText);
      }
      };
     xhttp.open("POST", "https://video.google.com/timedtext?lang=en&v=GeNG1M9eC-E", true);
@@ -63,14 +63,7 @@
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "942365948919-3ibtvbccelirtev78nknbqn36cmsjdbm.apps.googleusercontent.com"});
   });
-   $.ajax({
-        type: "POST",
-        url: "https://video.google.com/timedtext?lang=en&v=5MgBikgcWnY"
-    }).done(function (response) {
-        console.log(response);
-    }).fail(function (response) {
-        console.log();
-    });
+
 </script>
 <button onclick="authenticate().then(loadClient)">authorize and load</button>
 <button onclick="execute2()">execute</button>
