@@ -47,6 +47,7 @@
       return false;
     }
     console.log(x)
+    return false;
   }
   gapi.load("client:auth2", function() {
     gapi.auth2.init({client_id: "942365948919-3ibtvbccelirtev78nknbqn36cmsjdbm.apps.googleusercontent.com"});
@@ -54,7 +55,7 @@
 </script>
 <button onclick="authenticate().then(loadClient)">authorize and load</button>
 <button onclick="execute2()">execute</button>
-<form name="myForm" action="" onsubmit="return validateForm()" method="post">
+<form name="myForm" onsubmit="return validateForm()" >
   Name: <input type="text" name="fname">
   <input type="submit" value="Submit">
 </form>
