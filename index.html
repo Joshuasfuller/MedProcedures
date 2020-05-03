@@ -1,6 +1,3 @@
-<h1>Hello</h1>
-
-
 <script src="https://apis.google.com/js/api.js"></script>
 <script>
   /**
@@ -8,7 +5,13 @@
    * See instructions for running APIs Explorer code samples locally:
    * https://developers.google.com/explorer-help/guides/code_samples#javascript
    */
-  // Make sure the client is loaded and sign-in is complete before calling this method.
+
+  function authenticate() {
+    return gapi.auth2.getAuthInstance()
+        .signIn({scope: "https://www.googleapis.com/auth/youtube.force-ssl"})
+        .then(function() { console.log("Sign-in successful"); },
+              function(err) { console.error("Error signing in", err); });
+  }
   function loadClient() {
     gapi.client.setApiKey("AIzaSyA_xwIG1FQLnbHjuxrfQPv79NVtmhVtdAk");
     return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
@@ -31,4 +34,5 @@
     gapi.auth2.init({client_id: "942365948919-3ibtvbccelirtev78nknbqn36cmsjdbm.apps.googleusercontent.com"});
   });
 </script>
+<button onclick="authenticate().then(loadClient)">authorize and load</button>
 <button onclick="execute()">execute</button>
