@@ -31,6 +31,7 @@
               function(err) { console.error("Execute error", err); });
   }
   function execute2(){
+    console.log(vidId);
     return gapi.client.youtube.captions.download({
       "id": vidId
     })
@@ -46,7 +47,6 @@
       console.log("Name must be filled out");
       return false;
     }
-    console.log(vidId);
     vidId = x;
     console.log(x);
     return false;
@@ -58,7 +58,7 @@
        console.log(xhttp.responseText);
      }
      };
-    xhttp.open("POST", "https://video.google.com/timedtext?lang=en&v=GeNG1M9eC-E", true);
+     xhttp.open("GET", "https://video.google.com/timedtext?lang=en&v=GeNG1M9eC-E", true);
      xhttp.send();
   }
   gapi.load("client:auth2", function() {
