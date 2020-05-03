@@ -9,6 +9,13 @@
    * https://developers.google.com/explorer-help/guides/code_samples#javascript
    */
   // Make sure the client is loaded and sign-in is complete before calling this method.
+  function loadClient() {
+    gapi.client.setApiKey("AIzaSyA_xwIG1FQLnbHjuxrfQPv79NVtmhVtdAk");
+    return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
+        .then(function() { console.log("GAPI client loaded for API"); },
+              function(err) { console.error("Error loading GAPI client for API", err); });
+  }
+  // Make sure the client is loaded and sign-in is complete before calling this method.
   function execute() {
     return gapi.client.youtube.captions.list({
       "part": "id",
@@ -20,5 +27,8 @@
               },
               function(err) { console.error("Execute error", err); });
   }
+  gapi.load("client:auth2", function() {
+    gapi.auth2.init({client_id: "942365948919-3ibtvbccelirtev78nknbqn36cmsjdbm.apps.googleusercontent.com"});
+  });
 </script>
 <button onclick="execute()">execute</button>
